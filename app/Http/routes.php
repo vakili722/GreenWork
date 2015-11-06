@@ -4,8 +4,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', 'HomeController@getIndex');
     Route::get('home', 'HomeController@getIndex');
     Route::get('/', 'HomeController@getIndex');
-
-    Route::get('prototype', 'HomeController@getPage');
+    Route::post('dashboard', 'HomeController@getIndex');
+    Route::post('home', 'HomeController@getIndex');
+    Route::post('/', 'HomeController@getIndex');
+    
+    Route::get('profile', 'ProfileController@getIndex');
+    Route::post('profile', 'ProfileController@getIndex');
+    
+    Route::get('page/static/{name}', 'PageController@getIndexStatic');
+    Route::get('page/dynamic/{name}', 'PageController@getIndexDynamic');
+    Route::post('page/static/{name}', 'PageController@postIndexStatic');
+    Route::post('page/dynamic/{name}', 'PageController@postIndexDynamic');
+    
+    Route::get('report/{name}', 'ReportController@getIndex');
+    Route::post('report/{name}', 'ReportController@postIndex');
 });
 
 // Authentication routes...

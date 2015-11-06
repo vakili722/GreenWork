@@ -19,13 +19,13 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ url('plugins/iCheck/square/blue.css') }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url('css/font-awesome.min.css') }}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ url('css/ionicons.min.css') }}">
 
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<!--[if lt IE 9]>
+    <script src="{{ url('js/html5shiv.min.js') }}"></script>
+    <script src="{{ url('js/respond.min.js') }}"></script>
     <![endif]-->
 </head>
 <body class="hold-transition login-page">

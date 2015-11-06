@@ -34,6 +34,10 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
+        echo '<div style="direction: ltr">';
+        \Symfony\Component\VarDumper\VarDumper::dump($request->session()->all());
+        echo '</div>';
+        
         if ($this->auth->guest()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);

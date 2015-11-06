@@ -64,7 +64,7 @@
 <!-- SlimScroll 1.3.0 -->
 <script src="{{ url('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ url('js/app.min.js') }}"></script>
+<script src="{{ url('js/app.js') }}"></script>
 <!-- custom script -->
 <script type="text/javascript">@yield('script')</script>
 </body>

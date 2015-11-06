@@ -17,7 +17,7 @@
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{ url('img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-                    <span class="hidden-xs">مجتبی صباغ جعفری</span>
+                    <span class="hidden-xs">{{ $session->get('user_name') }}</span>
                 </a>
                 <ul class="dropdown-menu">
                     <!-- User image -->
@@ -25,13 +25,13 @@
                         <img src="{{ url('img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                         <p>
-                            مجتبی صباغ جعفری
-                            <br/><small>گروه مهندسی کامپیوتر</small>
+                            {{ $session->get('user_name') }}
+                            <br/><small>{{ $session->get('group_alias') }}</small>
                         </p>
                     </li>
                     <li class="user-footer">
                         <div class="pull-right">
-                            <a href="{{ url('prototype/profile') }}" class="btn btn-default btn-flat">پروفایل</a>
+                            <a href="{{ url('profile') }}" class="btn btn-default btn-flat">پروفایل</a>
                         </div>
                         <div class="pull-left">
                             <a href="{{ url('auth/logout') }}" class="btn btn-default btn-flat">خروج</a>
