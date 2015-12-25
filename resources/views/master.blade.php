@@ -29,7 +29,7 @@
     <![endif]-->
 
     <!-- custom css -->
-    <style type="text/css">@yield('css')</style>
+    @yield('css')
 </head>
 <body class="hold-transition skin-blue sidebar-mini layout-boxed">
 <div class="wrapper">
@@ -66,6 +66,6 @@
 <!-- AdminLTE App -->
 <script src="{{ url('js/app.js') }}"></script>
 <!-- custom script -->
-<script type="text/javascript">@yield('script')</script>
+@yield('script')
 </body>
 </html>

@@ -12,7 +12,7 @@ class Menu {
     , $pattern = ['FORM' => 'TREE', 'DYNAMIC' => 'LABLE', 'REPORT' => 'LABLE']) {
         $result = '';
 
-        $form = $menus->where('type', 'FORM');
+        $form = $menus->where('type', 'STATIC');
         $report = $menus->where('type', 'REPORT');
 
         if ($form->toArray() != []) {

@@ -1,23 +1,47 @@
 <?php
 
 Route::group(['middleware' => 'auth'], function () {
+    // Dashboard Page Route
     Route::get('dashboard', 'HomeController@getIndex');
     Route::get('home', 'HomeController@getIndex');
     Route::get('/', 'HomeController@getIndex');
-    Route::post('dashboard', 'HomeController@getIndex');
-    Route::post('home', 'HomeController@getIndex');
-    Route::post('/', 'HomeController@getIndex');
-    
+    Route::post('dashboard', 'HomeController@postIndex');
+    Route::post('home', 'HomeController@postIndex');
+    Route::post('/', 'HomeController@postIndex');
+
+    // Dynamic Page Routes
+    Route::get('page/{name}', 'PageController@getIndex');
+    Route::post('page/{name}', 'PageController@postIndex');
+
+    /* --- * Report Routes * --- */
+//    Route::get('report/[name]', 'Reports\[name]\Controller@getIndex');
+//    Route::post('report/[name]', 'Reports\[name]\Controller@postIndex');
+
+    /* --- * Static Page Routes * --- */
+    // Profile Route
     Route::get('profile', 'ProfileController@getIndex');
     Route::post('profile', 'ProfileController@getIndex');
-    
-    Route::get('page/static/{name}', 'PageController@getIndexStatic');
-    Route::get('page/dynamic/{name}', 'PageController@getIndexDynamic');
-    Route::post('page/static/{name}', 'PageController@postIndexStatic');
-    Route::post('page/dynamic/{name}', 'PageController@postIndexDynamic');
-    
-    Route::get('report/{name}', 'ReportController@getIndex');
-    Route::post('report/{name}', 'ReportController@postIndex');
+    // Users Route
+    Route::get('users', 'UsersController@getIndex');
+    Route::post('users', 'UsersController@postIndex');
+    // Groups Route
+    Route::get('groups', 'GroupsController@getIndex');
+    Route::post('groups', 'GroupsController@postIndex');
+    // Tasks Route
+    Route::get('tasks', 'TasksController@getIndex');
+    Route::post('tasks', 'TasksController@postIndex');
+    // Permissions Route
+    Route::get('permissions', 'PermissionsController@getIndex');
+    Route::post('permissions', 'PermissionsController@postIndex');
+    // Roles Route
+    Route::get('roles', 'RolesController@getIndex');
+    Route::post('roles', 'RolesController@postIndex');
+    // Documents Route
+    Route::get('documents', 'DocumentsController@getIndex');
+    Route::post('documents', 'DocumentsController@postIndex');
+    // Dossiers Route
+    Route::get('dossiers', 'DossiersController@getIndex');
+    Route::post('dossiers', 'DossiersController@postIndex');
 });
 
 // Authentication routes...

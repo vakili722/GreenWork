@@ -72,8 +72,8 @@ use AuthenticatesAndRegistersUsers,
         $request->session()->put('group_id', $group->id);
         $request->session()->put('group_alias', $group->alias);
         $request->session()->put('menu_home_id', $group->menu_home_id);
+        $request->session()->put('menu_order', $group->menu_order);
         $request->session()->put('home_name', $home->name);
-        $request->session()->put('sub_system_id', $group->sub_system_id);
 
         // Menu Data
         $request->session()->put('static_menu', $group->mstatics);

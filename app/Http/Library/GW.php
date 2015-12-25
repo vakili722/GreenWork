@@ -15,8 +15,7 @@ class GW {
     public $permisions;
     public $group_alias;
     public $menu_home_id;
-    public $sub_system_id;
-
+    
     public function __construct(Request $request) {
         $session = $request->session();
         $this->roles = $session->get('roles');
@@ -27,7 +26,6 @@ class GW {
         $this->permisions = $session->get('permissions');
         $this->group_alias = $session->get('group_alias');
         $this->menu_home_id = $session->get('menu_home_id');
-        $this->sub_system_id = $session->get('sub_system_id');
     }
     
     
