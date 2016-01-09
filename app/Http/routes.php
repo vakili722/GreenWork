@@ -10,8 +10,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/', 'HomeController@postIndex');
 
     // Dynamic Page Routes
-    Route::get('page/{name}', 'PageController@getIndex');
-    Route::post('page/{name}', 'PageController@postIndex');
+//    Route::get('page/{name}', 'PageController@getIndex');
+//    Route::post('page/{name}', 'PageController@postIndex');
 
     /* --- * Report Routes * --- */
 //    Route::get('report/[name]', 'Reports\[name]\Controller@getIndex');
@@ -22,26 +22,26 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', 'ProfileController@getIndex');
     Route::post('profile', 'ProfileController@getIndex');
     // Users Route
-    Route::get('users', 'UsersController@getIndex');
-    Route::post('users', 'UsersController@postIndex');
+    Route::get('user', 'UserController@getIndex');
+    Route::post('user', 'UserController@postIndex');
     // Groups Route
-    Route::get('groups', 'GroupsController@getIndex');
-    Route::post('groups', 'GroupsController@postIndex');
+    Route::get('group', 'GroupController@getIndex');
+    Route::post('group', 'GroupController@postIndex');
     // Tasks Route
-    Route::get('tasks', 'TasksController@getIndex');
-    Route::post('tasks', 'TasksController@postIndex');
+    Route::get('task', 'TaskController@getIndex');
+    Route::post('task', 'TaskController@postIndex');
     // Permissions Route
-    Route::get('permissions', 'PermissionsController@getIndex');
-    Route::post('permissions', 'PermissionsController@postIndex');
+    Route::get('permission', 'PermissionController@getIndex');
+    Route::post('permission', 'PermissionController@postIndex');
     // Roles Route
-    Route::get('roles', 'RolesController@getIndex');
-    Route::post('roles', 'RolesController@postIndex');
+    Route::get('role', 'RoleController@getIndex');
+    Route::post('role', 'RoleController@postIndex');
     // Documents Route
-    Route::get('documents', 'DocumentsController@getIndex');
-    Route::post('documents', 'DocumentsController@postIndex');
+    Route::get('document', 'DocumentController@getIndex');
+    Route::post('document', 'DocumentController@postIndex');
     // Dossiers Route
-    Route::get('dossiers', 'DossiersController@getIndex');
-    Route::post('dossiers', 'DossiersController@postIndex');
+    Route::get('dossier', 'DossierController@getIndex');
+    Route::post('dossier', 'DossierController@postIndex');
 });
 
 // Authentication routes...

@@ -5,30 +5,24 @@ namespace App\Http\Library;
 use Illuminate\Database\Eloquent\Collection;
 
 class Menu {
+    /*
+     * @param $pattenr 
+     * @argument TREE or LABLE
+     */
 
-    public static function builder(Collection $menus
-    , $path
-    , Collection $menus_dynamic = null
-    , $pattern = ['FORM' => 'TREE', 'DYNAMIC' => 'LABLE', 'REPORT' => 'LABLE']) {
+    public static function builder(Collection $menus, $path, $pattern = 'TREE') {
         $result = '';
+        $menus = $menus->groupBy('group_icon');
 
-        $form = $menus->where('type', 'STATIC');
-        $report = $menus->where('type', 'REPORT');
+//        echo '<div style="direction: ltr;">';
+//        \Symfony\Component\VarDumper\VarDumper::dump($menus);
+//        echo '</div>';
 
-        if ($form->toArray() != []) {
-            $html_form = Menu::html_code($form, array_get($pattern, 'FORM')
-                            , 'ابزارها', 'static', 'fa fa-suitcase', $path);
-        }if ($report->toArray() != []) {
-            $html_report = Menu::html_code($report, array_get($pattern, 'REPORT')
-                            , 'گزارشات', 'static', 'fa fa-book', $path);
+        foreach ($menus as $menu) {
+            $result .= Menu::html_code($menu, $pattern
+                            , $menu->first()->group_alias, 'static', $menu->first()->group_icon, $path);
         }
 
-        $keys = array_keys($pattern);
-        foreach ($keys as $key) {
-            if (isset(get_defined_vars()['html_' . strtolower($key)])) {
-                $result .= get_defined_vars()['html_' . strtolower($key)];
-            }
-        }
         return $result;
     }
 
@@ -45,12 +39,18 @@ class Menu {
     private static function tree_view(Collection $items, $alias, $type, $group_icon, $path) {
         $view_is_active = '';
         $name = null;
-        if (starts_with($path, 'page/' . $type)) {
-            $split = explode('/', $path);
-            $last = count($split) - 1;
-            $name = $split[$last];
-            $view_is_active = 'active';
+
+        if ($type == 'static') {
+            foreach ($items as $item) {
+                if ($path == $item->name) {
+                    $split = explode('/', $path);
+                    $last = count($split) - 1;
+                    $name = $split[$last];
+                    $view_is_active = 'active';
+                }
+            }
         }
+
         $html = '<li class="treeview ' . $view_is_active . '">'
                 . '<a href="#">'
                 . '<i class="' . $group_icon . '"></i>'
@@ -58,38 +58,57 @@ class Menu {
                 . '<i class="fa fa-angle-right pull-right"></i>'
                 . '</a>'
                 . '<ul class="treeview-menu">';
-        if ($type == 'static' || $type == 'dynamic') {
+
+        if ($type == 'static') {
             foreach ($items as $item) {
                 $item_is_active = '';
                 if ($name == $item->name) {
                     $item_is_active = 'active';
                 }
                 $html .= '<li class="' . $item_is_active . '"><a href="'
-                        . url('page/' . $type . '/' . $item->name) . '">'
+                        . url($item->name) . '">'
                         . '<i class="' . $item->icon . '"></i> '
                         . $item->alias
                         . '</a></li>';
             }
-        } else if ($type == 'report') {
-            return '';
+        } else if ($type == 'dynamic') {
+            foreach ($items as $item) {
+                $item_is_active = '';
+                if ($name == $item->name) {
+                    $item_is_active = 'active';
+                }
+                $html .= '<li class="' . $item_is_active . '"><a href="'
+                        . url('page/' . $item->name) . '">'
+                        . '<i class="' . $item->icon . '"></i> '
+                        . $item->alias
+                        . '</a></li>';
+            }
         }
+
         $html .= '</ul>'
                 . '</li>';
+
         return $html;
     }
 
     private static function lable_view(Collection $items, $alias, $type, $path) {
         $html = '<li class="header"> ' . $alias . '</li>';
-        if ($type == 'static' || $type == 'dynamic') {
+        if ($type == 'static') {
             foreach ($items as $item) {
-                $html .= '<li><a href="' . url('page/' . $type . '/' . $item->name) . '">'
+                $html .= '<li><a href="' . url($item->name) . '">'
                         . '<i class="' . $item->icon . '"></i> '
                         . $item->alias
                         . '</a></li>';
             }
-        } else if ($type == 'report') {
-            return '';
+        } else if ($type == 'dynamic') {
+            foreach ($items as $item) {
+                $html .= '<li><a href="' . url('page/' . $item->name) . '">'
+                        . '<i class="' . $item->icon . '"></i> '
+                        . $item->alias
+                        . '</a></li>';
+            }
         }
+
         return $html;
     }
 

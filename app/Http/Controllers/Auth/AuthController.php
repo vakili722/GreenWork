@@ -58,7 +58,7 @@ use AuthenticatesAndRegistersUsers,
                     'name' => $data['name'],
                     'email' => $data['email'],
                     'password' => bcrypt($data['password']),
-                    'group_id' => 1,
+                    'group_id' => 1,   // Change it to client agent
         ]);
     }
 

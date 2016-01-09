@@ -39,7 +39,6 @@ class Group extends Model {
      */
     public function mstatics() {
         return $this->belongsToMany('App\Models\MStatic', 'group_has_menu_static', 'group_id', 'menu_static_id')
-                        ->withPivot('order','mg_id')
                         ->orderBy('order', 'asc');
     }
     
