@@ -5,10 +5,8 @@
         if ($path == '/' || $path == 'home' || $path == 'dashboard') {
             echo 'داشبورد';
         } else {
-            if (starts_with($path, 'page/static')) {
-                $split = explode('/', $path);
-                $last = count($split) - 1;
-                $name = $split[$last];
+            if (!starts_with($path, 'page/')) {
+                $name = $path;
                 echo $session->get('static_menu')
                         ->where('name', $name)
                         ->first()->alias;
@@ -20,10 +18,8 @@
             if ($path == '/' || $path == 'home' || $path == 'dashboard') {
                 echo 'صفحه خانگی';
             } else {
-                if (starts_with($path, 'page/static')) {
-                    $split = explode('/', $path);
-                    $last = count($split) - 1;
-                    $name = $split[$last];
+                if (!starts_with($path, 'page/')) {
+                    $name = $path;
                     echo $session->get('static_menu')
                             ->where('name', $name)
                             ->first()->info;
@@ -37,11 +33,9 @@
         if ($path == '/' || $path == 'home' || $path == 'dashboard') {
             echo '<li class = "active"><i class = "fa fa-dashboard"></i> داشبورد</li>';
         } else {
-            if (starts_with($path, 'page/static')) {
-                $split = explode('/', $path);
-                $last = count($split) - 1;
-                $name = $split[$last];
-                echo '<li><a href="#"><i class="fa fa-suitcase"></i>ابزارها</a></li>';
+            if (!starts_with($path, 'page/')) {
+                $name = $path;
+                echo '<li><a href="#"><i class="'.$session->get('static_menu')->where('name', $name)->first()->group_icon.'"></i>'.$session->get('static_menu')->where('name', $name)->first()->group_alias.'</a></li>';
                 echo '<li class="active">' . $session->get('static_menu')->where('name', $name)->first()->alias . '</li>';
             }
         }
