@@ -20,9 +20,9 @@ Route::group(['middleware' => 'auth'], function () {
     /* --- * Static Page Routes * --- */
     // Profile Route
     Route::get('profile', 'ProfileController@getIndex');
-    Route::post('profile', 'ProfileController@getIndex');
+    Route::post('profile', 'ProfileController@postIndex');
     // Users Route
-    Route::get('user', 'UserController@getIndex');
+    Route::get('user/{filter?}', 'UserController@getIndex');
     Route::post('user', 'UserController@postIndex');
     // Groups Route
     Route::get('group', 'GroupController@getIndex');

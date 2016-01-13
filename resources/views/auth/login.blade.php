@@ -15,7 +15,7 @@
 
         <form action="{{ url('auth/login') }}" method="post">
             <div class="form-group has-feedback">
-                <input type="email" name="email" class="form-control" placeholder="Email" required="">
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email" required="">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
