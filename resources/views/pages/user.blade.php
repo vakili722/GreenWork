@@ -66,6 +66,9 @@ $(document).ready(function() {
         // add new button to form
         $('.box-primary .box-footer').empty();
         $('.box-primary .box-footer').append('<button name="action"  type="submit" value="update" class="btn btn-info">ویرایش</button>\n<button id="discard" type="button" class="btn btn-warning pull-left">لغو</button>');
+        // add old email to form as hidden field
+        $('.box-primary form').find('input[name="old_email"]').remove();
+        $('.box-primary form').append('<input name="old_email" value="' + element.eq(2).text() + '" type="hidden">');
         // change box title
         $('.box-primary .box-title').text('ویرایش کاربر');
         // discard click function
@@ -73,6 +76,7 @@ $(document).ready(function() {
             $('.box-primary .box-footer').empty();
             $('.box-primary .box-footer').append('<button name="action"  type="submit" value="create" class="btn btn-primary">افزودن</button>');
             // reset form
+            $('.box-primary form').find('input[name="old_email"]').remove();
             $('[name="name"]').removeAttr('value');
             $('[name="email"]').removeAttr('value');
             $('[name="group"]').children().first().prop("selected", true);

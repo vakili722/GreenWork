@@ -66,7 +66,7 @@ class UserController extends Controller {
 
             echo $this->getIndex($request);
         } elseif ($request->input('action') == 'update') {
-            $result = \App\User::where('email', $request->email)
+            $result = \App\User::where('email', $request->old_email)
                     ->update([
                 'name' => $request->name,
                 'email' => $request->email,
