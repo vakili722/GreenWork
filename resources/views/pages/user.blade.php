@@ -4,11 +4,16 @@
 
 @section('script')
 <script src="{{ url('js/bootstrap-dialog.min.js') }}"></script>
+<script src="{{ url('js/notify.js') }}"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
+    $.notify.defaults({
+        globalPosition: 'top center'
+    });
     // delete handler function
     $('table tbody .btn-group [name="trash"]').click(function() {
+        item = $(this).parent().parent().parent();
         element = $(this).parent().parent().siblings();
         BootstrapDialog.confirm({
             title: 'اخطار !',
@@ -28,18 +33,18 @@ $(document).ready(function() {
                         data: {_token: '{{ csrf_token() }}', action: 'delete', email: element.eq(2).text()},
                         success: function(result) {
                             if (result === '1') {
-                                alert('yes');
+                                $.notify("کاربر " + element.eq(0).text() + " با موفقیت از سیستم حذف شد.", 'success');
+                                item.remove();
                             }
                             else {
-                                alert('no');
+                                $.notify("حذف کاربر " + element.eq(0).text() + " با مشکل رو به رو شده.", 'error');
                             }
                         },
                         error: function() {
-                            alert('result');
+                            $.notify("ارتباط شما با سیستم قطع شده لطفا دوباره وارد شوید.", 'warn');
                         }
                     });
-                } else {
-                    alert('Nope.');
+                    $.notify("درخواست با موفقیت ارسال شد.", 'info');
                 }
             }
         });
@@ -216,9 +221,11 @@ $(document).ready(function() {
             </tbody>
         </table>
     </div>
-    <div class="box-footer clearfix">
-        <?php echo $user['info']->render(); ?>
-    </div>
+    <?php if ($user['info']->render() != ''): ?>
+        <div class="box-footer clearfix">
+            <?php echo $user['info']->render(); ?>
+        </div>
+    <?php endif; ?>
 </div>
 <!-- /.box -->
 @endsection

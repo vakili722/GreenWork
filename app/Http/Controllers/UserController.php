@@ -37,6 +37,7 @@ class UserController extends Controller {
 
     private function ajaxHandler(Request $request) {
         if ($request->input('action') == 'delete') {
+            // return result of action delete to client...
             echo \App\User::where('email', $request->email)->delete();
         }
     }
