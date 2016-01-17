@@ -157,6 +157,7 @@ $(document).ready(function() {
                         <label>گروه کاربری</label>
                         <select name="group" class="form-control" >
                             <?php
+//                            var_dump($user['load']);
                             foreach ($user['load'] as $item) {
                                 echo '<option value="' . $item->id . '">' . $item->alias . '</option>';
                             }
@@ -186,13 +187,15 @@ $(document).ready(function() {
         </h3>
 
         <div class="box-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-                <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
+            <form action="{{ url('user') }}" method="get">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input name="search" class="form-control pull-right" placeholder="Search" type="text">
 
-                <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <!-- /.box-header -->
@@ -208,6 +211,7 @@ $(document).ready(function() {
             </thead>
             <tbody>
                 <?php
+//                var_dump($user['info']);
                 foreach ($user['info'] as $item) {
                     echo '<tr>';
                     echo '<td>' . $item->name . '</td>';
@@ -227,7 +231,7 @@ $(document).ready(function() {
     </div>
     <?php if ($user['info']->render() != ''): ?>
         <div class="box-footer clearfix">
-            <?php echo $user['info']->render(); ?>
+            <?php echo $user['info']->appends(['search' => $params['search']])->render(); ?>
         </div>
     <?php endif; ?>
 </div>

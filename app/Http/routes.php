@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', 'ProfileController@getIndex');
     Route::post('profile', 'ProfileController@postIndex');
     // Users Route
-    Route::get('user/{filter?}', 'UserController@getIndex');
+    Route::get('user', 'UserController@getIndex');
     Route::post('user', 'UserController@postIndex');
     // Groups Route
     Route::get('group', 'GroupController@getIndex');

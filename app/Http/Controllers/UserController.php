@@ -7,23 +7,45 @@ use App\Http\Library\GW;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Controllers\Controller;
+use App\Http\Library\Filter;
 
 class UserController extends Controller {
 
     private function load(Request $request, & $data, $params) {
-        $data['user']['info'] = \App\User::paginate($params['pagination']);
+        $columnsInfo = [
+            'name' => [
+                'alias' => 'نام',
+                'class' => \App\User::class
+            ],
+            'email' => [
+                'alias' => 'ایمیل',
+                'class' => \App\User::class
+            ],
+            'group_id' => [
+                'alias' => 'گروه کاربری',
+                'class' => \App\Models\Group::class,
+                'wherethrough' => [
+                    'key' => 'alias',
+                    'value' => 'id'
+                ]
+            ]
+        ];
+
+        $data['user']['info'] = Filter::Rendering(\App\User::class, $columnsInfo, $params['search'], $params['perPage']);
+//        \Symfony\Component\VarDumper\VarDumper::dump($data['user']['info']);
         $data['user']['load'] = \App\Models\Group::all();
+        $data['params'] = $params;
         $this->init_data($request, $data);
     }
 
-    public function getIndex(Request $request, $filter = null) {
+    public function getIndex(Request $request) {
         $data = [];
 
 //        echo '<div style="direction: ltr">';
 //        \Symfony\Component\VarDumper\VarDumper::dump($data['user']['info']);
 //        echo '</div>';
 
-        $this->load($request, $data, ['pagination' => 5, 'filter' => $filter]);
+        $this->load($request, $data, ['perPage' => 5, 'search' => $request->search]);
         return view('pages.user', $data);
     }
 
@@ -43,14 +65,14 @@ class UserController extends Controller {
     }
 
     private function formHandler(Request $request) {
-        if ($request->input('action') == 'create') {
-            $this->validate($request, [
-                'name' => 'required',
-                'group' => 'required|numeric',
-                'email' => 'required|email',
-                'password' => 'required|confirmed|min:6'
-            ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'group' => 'required|numeric',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6'
+        ]);
 
+        if ($request->input('action') == 'create') {
             $user = new \App\User;
             $user->name = $request->name;
             $user->email = $request->email;
