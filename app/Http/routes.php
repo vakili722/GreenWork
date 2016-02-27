@@ -9,7 +9,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('home', 'HomeController@postIndex');
     Route::post('/', 'HomeController@postIndex');
 
-    // Dynamic Page Routes
+    /* --- * Dynamic Page Routes * --- */
 //    Route::get('page/{name}', 'PageController@getIndex');
 //    Route::post('page/{name}', 'PageController@postIndex');
 

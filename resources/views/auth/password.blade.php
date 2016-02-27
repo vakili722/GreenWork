@@ -1,17 +1,17 @@
 @extends('auth.master')
 
-@section('title', 'ثبت نام کاربر')
+@section('title', 'فراموشی رمز ورود')
 
 @section('body')
     <div class="register-box">
         <div class="register-logo">
-            <a href="{{ url() }}"><b>Workflow</b> BPM</a>
+            <a href="{{ url() }}"><b>Green</b>Work</a>
         </div>
 
         @include('auth.message')
 
         <div class="register-box-body">
-            <p class="login-box-msg">Send Password Reset Link</p>
+            <p class="login-box-msg">دریافت لینک بازیابی رمز ورود</p>
 
             <form action="{{ url('password/email') }}" method="post">
                 <div class="form-group has-feedback">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-4 pull-left">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Continue</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">دریافت</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -28,10 +28,10 @@
             </form>
 
             <div class="social-auth-links text-center">
-                <p>- OR -</p>
+                <p>- یا -</p>
             </div>
 
-            <a href="{{ url('auth/register') }}" class="text-center">Register a new membership</a>
+            <a href="{{ url('auth/register') }}" class="text-center">ساخت حساب کاربری جدید</a>
         </div>
         <!-- /.form-box -->
     </div>

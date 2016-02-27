@@ -5,13 +5,13 @@
 @section('body')
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url() }}"><b>Workflow</b> BPM</a>
+        <a href="{{ url() }}"><b>Green</b>Work</a>
     </div>
 
     @include('auth.message')
 
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">برای شروع نشست وارد سیستم شوید</p>
 
         <form action="{{ url('auth/login') }}" method="post">
             <div class="form-group has-feedback">
@@ -26,13 +26,13 @@
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox" name="remember"> Remember Me
+                            <input type="checkbox" name="remember"> مرا به خاطر داشته باش
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">ورود</button>
                 </div>
                 <!-- /.col -->
             </div>
@@ -40,18 +40,11 @@
         </form>
 
         <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
-                using
-                Facebook</a>
-            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in
-                using
-                Google+</a>
+            <p>- یا -</p>
         </div>
-        <!-- /.social-auth-links -->
 
-        <a href="{{ url('password/email') }}">I forgot my password</a><br>
-        <a href="{{ url('auth/register') }}" class="text-center">Register a new membership</a>
+        <a href="{{ url('password/email') }}">رمز عبورم را فراموش کرده ام</a><br>
+        <a href="{{ url('auth/register') }}" class="text-center">ساخت حساب کاربری جدید</a>
 
     </div>
     <!-- /.login-box-body -->

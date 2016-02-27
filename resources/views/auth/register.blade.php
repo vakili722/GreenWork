@@ -5,13 +5,13 @@
 @section('body')
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ url() }}"><b>Workflow</b> BPM</a>
+        <a href="{{ url() }}"><b>Green</b>Work</a>
     </div>
 
     @include('auth.message')
 
     <div class="register-box-body">
-        <p class="login-box-msg">Register a new membership</p>
+        <p class="login-box-msg">ساخت حساب کاربری جدید</p>
 
         <form action="{{ url('auth/register') }}" method="post">
             <div class="form-group has-feedback">
@@ -34,13 +34,13 @@
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input name="contract" type="checkbox"> I agree to the <a href="#">terms</a>
+                            <input name="contract" type="checkbox"><a href="#"> قوانین</a> را میپذیرم 
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">ایجاد</button>
                 </div>
                 <!-- /.col -->
             </div>
@@ -48,14 +48,10 @@
         </form>
 
         <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-                Facebook</a>
-            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-                Google+</a>
+            <p>- یا -</p>
         </div>
 
-        <a href="{{ url('auth/login') }}" class="text-center">I already have a membership</a>
+        <a href="{{ url('auth/login') }}" class="text-center">صفجه ورود به سیستم</a>
     </div>
     <!-- /.form-box -->
 </div>

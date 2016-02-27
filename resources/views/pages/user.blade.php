@@ -5,9 +5,16 @@
 @section('script')
 <script src="{{ url('js/bootstrap-dialog.min.js') }}"></script>
 <script src="{{ url('js/notify.js') }}"></script>
+<script src="{{ url('plugins/select2/select2.full.min.js') }}"></script>
+<script src="{{ url('plugins/select2/i18n/fa.js') }}"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
+    $(".select2").select2({
+        language: "fa",
+        dir: "rtl"
+    });
+
     $.notify.defaults({
         globalPosition: 'top center'
     });
@@ -89,6 +96,7 @@ $(document).ready(function() {
 
 @section('css')
 <link rel="stylesheet" href="{{ url('css/bootstrap-dialog.min.css') }}">
+<link rel="stylesheet" href="{{ url('plugins/select2/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -155,7 +163,7 @@ $(document).ready(function() {
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="form-group">
                         <label>گروه کاربری</label>
-                        <select name="group" class="form-control" >
+                        <select name="group" class="form-control select2" >
                             <?php
 //                            var_dump($user['load']);
                             foreach ($user['load'] as $item) {
